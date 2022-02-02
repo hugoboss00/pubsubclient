@@ -454,7 +454,8 @@ boolean PubSubClient::loop() {
                 _client->stop();
                 return false;
             } else {
-                Serial.printf("Ping %d\n", pingOutstanding);
+                if (pingOutstanding > 0)
+                    Serial.printf("Ping %d\n", pingOutstanding);
                 this->buffer[0] = MQTTPINGREQ;
                 this->buffer[1] = 0;
                 _client->write(this->buffer,2);
